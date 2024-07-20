@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Righteous&display=swap');
 
 * {
   margin: 0;
@@ -6,11 +6,61 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  background: #fcfcfc;
+  color: #3a3a3a;
+  font-family: 'Outfit', sans-serif;
+  text-align: center;
+}
+
+#header {
+  color: #5546ad;
+  font-family: 'Righteous', sans-serif;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 30px;
+}
+
+#search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px 0 50px;
+}
+
+#search input {
+  color: #3a3a3a;
+  border: 1px solid #aaaaaa;
+  border-radius: 20px;
+  outline: none;
+  padding: 10px;
+  width: 300px;
+  font-size: 15px;
+  text-align: center;
+}
+
+#welcome {
+  margin: 100px;
+  line-height: 2.75rem;
+}
+
+span {
   color: #5546ad;
 }
 
-h1 {
-  font-family: 'Righteous', sans-serif;
-  font-size: 50px;
+#output {
+}
+
+#song {
+  margin-top: 5px;
+}
+
+#lyrics {
+  margin: 20px;
+  line-height: 3rem;
+  font-size: 18px;
 }
