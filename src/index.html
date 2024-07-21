@@ -14,15 +14,28 @@
 
     <!-- Search bar -->
     <div id="search">
-      <input type="text" placeholder="Search artist and song title..." />
+      <input
+        type="text"
+        id="artist-input"
+        class="search-box"
+        placeholder="Enter artist name..."
+      />
+      <input
+        type="text"
+        id="title-input"
+        class="search-box"
+        placeholder="Enter song title..."
+      />
     </div>
+    <button id="search-btn">Search Lyrics</button>
 
-    <div id="welcome">
+    <!-- Welcome -->
+    <!-- <div id="welcome">
       <h2>
         Welcome to <span>Lyrical</span>. <br />
         Search any artist and song title to get started.
       </h2>
-    </div>
+    </div> -->
 
     <!-- Output -->
     <div id="output">
@@ -31,7 +44,7 @@
           <!-- Artist -->
         </h3>
       </div>
-      <div id="song">
+      <div id="title">
         <h2>
           <!-- Song title -->
         </h2>
@@ -41,4 +54,5 @@
       </div>
     </div>
   </body>
+  <script src="/dist/index.js"></script>
 </html>
