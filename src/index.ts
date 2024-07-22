@@ -4,6 +4,7 @@ const artistOutput = document.getElementById('artist') as HTMLDivElement;
 const titleOutput = document.getElementById('title') as HTMLDivElement;
 const lyricOutput = document.getElementById('lyrics') as HTMLDivElement;
 const searchBtn = document.getElementById('search-btn') as HTMLButtonElement;
+const errorDiv = document.getElementById('error') as HTMLInputElement;
 
 // API call to fetch lyrics
 const fetchLyrics = async (artist: string, title: string) => {
@@ -11,15 +12,9 @@ const fetchLyrics = async (artist: string, title: string) => {
     const res = await fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`);
     const data = await res.json();
 
-    if (data.error) {
-      console.log('Lyrics not found. Please try your search again.');
-      return;
-    }
-
     return data.lyrics;
   } catch (error) {
     console.log(error);
-    return;
   }
 };
 
@@ -36,12 +31,14 @@ const search = async () => {
   try {
     const lyrics = await fetchLyrics(artist, title);
     printLyrics(lyrics);
-
-    artistInput.value = '';
-    titleInput.value = '';
   } catch (error) {
-    console.log(error);
+    showError('Lyrics not found. Please try your search again.');
+    return;
   }
+
+  artistInput.value = '';
+  titleInput.value = '';
+  errorDiv.innerHTML = '';
 };
 
 // Display lyrics to DOM
@@ -57,6 +54,17 @@ const printLyrics = (lyrics: string) => {
       }
     });
   }
+};
+
+// Display error message
+const showError = (msg: string) => {
+  errorDiv.innerHTML = '';
+  lyricOutput.innerHTML = '';
+
+  const errorMsg = document.createElement('p');
+  errorMsg.innerHTML = msg;
+
+  errorDiv.appendChild(errorMsg);
 };
 
 searchBtn.addEventListener('click', search);
