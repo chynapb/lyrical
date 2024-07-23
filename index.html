@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Lyrical</title>
+  </head>
+  <body>
+    <!-- Header -->
+    <div id="header">
+      <h1>Lyrical</h1>
+    </div>
+
+    <!-- Search bar -->
+    <div id="search">
+      <input
+        type="text"
+        id="artist-input"
+        class="search-box"
+        placeholder="Enter artist name..."
+      />
+      <input
+        type="text"
+        id="title-input"
+        class="search-box"
+        placeholder="Enter song title..."
+      />
+    </div>
+    <button id="search-btn">Search Lyrics</button>
+
+    <!-- Welcome -->
+    <div id="welcome">
+      <h2>
+        Welcome to <span>Lyrical</span>. <br />
+        Search any artist and song title to get started.
+      </h2>
+    </div>
+
+    <!-- Output -->
+    <div id="output">
+      <div id="lyrics">
+        <!-- Lyrics generated here -->
+      </div>
+
+      <!-- Errors -->
+      <div id="error"></div>
+
+      <!-- Loading spinner -->
+      <div id="spinner-container">
+        <div id="spinner" class="hide"></div>
+      </div>
+    </div>
+  </body>
+  <script src="/dist/index.js"></script>
+</html>
