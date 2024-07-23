@@ -84,6 +84,35 @@ span {
   font-size: 18px;
 }
 
+#error {
+  margin: 100px;
+}
+
 .hide {
   display: none;
+}
+
+/* Loading spinner */
+#spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#spinner {
+  border: 6px solid #ececec;
+  border-top: 6px solid #5546ad;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

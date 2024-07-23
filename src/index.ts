@@ -6,6 +6,7 @@ const titleOutput = document.getElementById('title') as HTMLDivElement;
 const lyricOutput = document.getElementById('lyrics') as HTMLDivElement;
 const searchBtn = document.getElementById('search-btn') as HTMLButtonElement;
 const errorDiv = document.getElementById('error') as HTMLInputElement;
+const loadingSpinner = document.getElementById('spinner') as HTMLDivElement;
 
 // API call
 const fetchLyrics = async (artist: string, title: string) => {
@@ -21,6 +22,8 @@ const fetchLyrics = async (artist: string, title: string) => {
 
 // Fetch lyrics on search
 const search = async () => {
+  loadingSpinner.classList.remove('hide');
+
   const artist = artistInput.value;
   const title = titleInput.value;
 
@@ -31,6 +34,7 @@ const search = async () => {
 
   try {
     const lyrics = await fetchLyrics(artist, title);
+    loadingSpinner.classList.add('hide');
     printLyrics(lyrics);
   } catch (error) {
     errorDiv.innerHTML = '';

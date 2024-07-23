@@ -16,6 +16,7 @@ const titleOutput = document.getElementById('title');
 const lyricOutput = document.getElementById('lyrics');
 const searchBtn = document.getElementById('search-btn');
 const errorDiv = document.getElementById('error');
+const loadingSpinner = document.getElementById('spinner');
 // API call
 const fetchLyrics = (artist, title) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -29,6 +30,7 @@ const fetchLyrics = (artist, title) => __awaiter(void 0, void 0, void 0, functio
 });
 // Fetch lyrics on search
 const search = () => __awaiter(void 0, void 0, void 0, function* () {
+    loadingSpinner.classList.remove('hide');
     const artist = artistInput.value;
     const title = titleInput.value;
     if (!artist && !title) {
@@ -37,6 +39,7 @@ const search = () => __awaiter(void 0, void 0, void 0, function* () {
     }
     try {
         const lyrics = yield fetchLyrics(artist, title);
+        loadingSpinner.classList.add('hide');
         printLyrics(lyrics);
     }
     catch (error) {
