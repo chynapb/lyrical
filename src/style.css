@@ -83,3 +83,7 @@ span {
   line-height: 3rem;
   font-size: 18px;
 }
+
+.hide {
+  display: none;
+}

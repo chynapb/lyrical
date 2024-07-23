@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+const welcomeDiv = document.getElementById('welcome');
 const artistInput = document.getElementById('artist-input');
 const titleInput = document.getElementById('title-input');
 const artistOutput = document.getElementById('artist');
@@ -15,7 +16,7 @@ const titleOutput = document.getElementById('title');
 const lyricOutput = document.getElementById('lyrics');
 const searchBtn = document.getElementById('search-btn');
 const errorDiv = document.getElementById('error');
-// API call to fetch lyrics
+// API call
 const fetchLyrics = (artist, title) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const res = yield fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`);
@@ -39,17 +40,18 @@ const search = () => __awaiter(void 0, void 0, void 0, function* () {
         printLyrics(lyrics);
     }
     catch (error) {
+        errorDiv.innerHTML = '';
+        lyricOutput.innerHTML = '';
         showError('Lyrics not found. Please try your search again.');
-        return;
     }
     artistInput.value = '';
     titleInput.value = '';
-    errorDiv.innerHTML = '';
+    welcomeDiv.classList.add('hide');
 });
 // Display lyrics to DOM
 const printLyrics = (lyrics) => {
     if (lyrics.length > 0) {
-        lyricOutput.innerHTML = '';
+        errorDiv.innerHTML = '';
         lyrics.split('\n').forEach((line) => {
             if (!line.startsWith('Paroles de la chanson')) {
                 const p = document.createElement('p');
@@ -61,8 +63,6 @@ const printLyrics = (lyrics) => {
 };
 // Display error message
 const showError = (msg) => {
-    errorDiv.innerHTML = '';
-    lyricOutput.innerHTML = '';
     const errorMsg = document.createElement('p');
     errorMsg.innerHTML = msg;
     errorDiv.appendChild(errorMsg);
