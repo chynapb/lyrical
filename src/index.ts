@@ -1,72 +1,79 @@
 const welcomeDiv = document.getElementById('welcome') as HTMLDivElement;
 const artistInput = document.getElementById('artist-input') as HTMLInputElement;
 const titleInput = document.getElementById('title-input') as HTMLInputElement;
-const artistOutput = document.getElementById('artist') as HTMLDivElement;
-const titleOutput = document.getElementById('title') as HTMLDivElement;
 const lyricOutput = document.getElementById('lyrics') as HTMLDivElement;
 const searchBtn = document.getElementById('search-btn') as HTMLButtonElement;
 const errorDiv = document.getElementById('error') as HTMLInputElement;
 const loadingSpinner = document.getElementById('spinner') as HTMLDivElement;
 
+type LyricsData = {
+  lyrics: string;
+};
+
 // API call
-const fetchLyrics = async (artist: string, title: string) => {
+const fetchLyrics = async (
+  artist: string,
+  title: string
+): Promise<string | undefined> => {
   try {
     const res = await fetch(`https://api.lyrics.ovh/v1/${artist}/${title}`);
-    const data = await res.json();
-
+    if (!res.ok) throw new Error('Failed to fetch lyrics');
+    const data: LyricsData = await res.json();
     return data.lyrics;
   } catch (error) {
-    console.log(error);
+    console.error('Error fetching lyrics:', error);
   }
 };
 
 // Fetch lyrics on search
-const search = async () => {
+const search = async (): Promise<void> => {
   loadingSpinner.classList.remove('hide');
 
-  const artist = artistInput.value;
-  const title = titleInput.value;
+  const artist = artistInput.value.trim();
+  const title = titleInput.value.trim();
 
-  if (!artist && !title) {
+  if (!artist || !title) {
     alert('Please enter an artist and song title.');
+    loadingSpinner.classList.add('hide');
     return;
   }
 
   try {
     const lyrics = await fetchLyrics(artist, title);
     loadingSpinner.classList.add('hide');
-    printLyrics(lyrics);
+    if (lyrics) {
+      printLyrics(lyrics);
+    } else {
+      showError('Lyrics not found. Please try your search again.');
+    }
   } catch (error) {
-    errorDiv.innerHTML = '';
-    lyricOutput.innerHTML = '';
-    showError('Lyrics not found. Please try your search again.');
+    showError('An error occurred while fetching the lyrics. Please try again.');
+  } finally {
+    artistInput.value = '';
+    titleInput.value = '';
+    welcomeDiv.classList.add('hide');
   }
-
-  artistInput.value = '';
-  titleInput.value = '';
-  welcomeDiv.classList.add('hide');
 };
 
 // Display lyrics to DOM
-const printLyrics = (lyrics: string) => {
-  if (lyrics.length > 0) {
-    errorDiv.innerHTML = '';
+const printLyrics = (lyrics: string): void => {
+  lyricOutput.innerHTML = '';
+  errorDiv.innerHTML = '';
 
-    lyrics.split('\n').forEach((line) => {
-      if (!line.startsWith('Paroles de la chanson')) {
-        const p = document.createElement('p');
-        p.textContent = line;
-        lyricOutput.appendChild(p);
-      }
-    });
-  }
+  lyrics.split('\n').forEach((line) => {
+    if (!line.startsWith('Paroles de la chanson')) {
+      const p = document.createElement('p');
+      p.textContent = line;
+      lyricOutput.appendChild(p);
+    }
+  });
 };
 
 // Display error message
-const showError = (msg: string) => {
+const showError = (msg: string): void => {
+  errorDiv.innerHTML = '';
   const errorMsg = document.createElement('p');
-  errorMsg.innerHTML = msg;
-
+  errorMsg.textContent = msg;
   errorDiv.appendChild(errorMsg);
 };
 
