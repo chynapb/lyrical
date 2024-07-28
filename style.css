@@ -36,7 +36,7 @@ body {
   font-family: 'Outfit', sans-serif;
   color: #111111;
   border: 1px solid #aaaaaa;
-  border-radius: 20px;
+  border-radius: 50px;
   outline: none;
   margin: 5px;
   padding: 10px;
@@ -53,7 +53,7 @@ body {
   background: #5546ad;
   color: #ffffff;
   border: none;
-  border-radius: 20px;
+  border-radius: 50px;
   outline: none;
   padding: 10px;
   font-size: 14px;
@@ -66,6 +66,9 @@ body {
 }
 
 #welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 100px;
   line-height: 2.75rem;
 }
@@ -114,5 +117,12 @@ span {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* Media queries */
+@media screen and (max-width: 500px) {
+  #search {
+    display: block;
   }
 }
