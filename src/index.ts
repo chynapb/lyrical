@@ -49,8 +49,6 @@ const search = async (): Promise<void> => {
   } catch (error) {
     showError('An error occurred while fetching the lyrics. Please try again.');
   } finally {
-    artistInput.value = '';
-    titleInput.value = '';
     welcomeDiv.remove();
   }
 };
