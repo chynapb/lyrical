@@ -54,7 +54,7 @@ const search = () => __awaiter(void 0, void 0, void 0, function* () {
     finally {
         artistInput.value = '';
         titleInput.value = '';
-        welcomeDiv.classList.add('hide');
+        welcomeDiv.remove();
     }
 });
 // Display lyrics to DOM
@@ -62,6 +62,7 @@ const printLyrics = (lyrics) => {
     lyricOutput.innerHTML = '';
     errorDiv.innerHTML = '';
     lyrics.split('\n').forEach((line) => {
+        // Remove the text 'Paroles de la chanson' at the beginning of the line
         if (!line.startsWith('Paroles de la chanson')) {
             const p = document.createElement('p');
             p.textContent = line;
@@ -71,6 +72,7 @@ const printLyrics = (lyrics) => {
 };
 // Display error message
 const showError = (msg) => {
+    lyricOutput.innerHTML = '';
     errorDiv.innerHTML = '';
     const errorMsg = document.createElement('p');
     errorMsg.textContent = msg;

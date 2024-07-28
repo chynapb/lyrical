@@ -51,7 +51,7 @@ const search = async (): Promise<void> => {
   } finally {
     artistInput.value = '';
     titleInput.value = '';
-    welcomeDiv.classList.add('hide');
+    welcomeDiv.remove();
   }
 };
 
@@ -61,6 +61,7 @@ const printLyrics = (lyrics: string): void => {
   errorDiv.innerHTML = '';
 
   lyrics.split('\n').forEach((line) => {
+    // Remove the text 'Paroles de la chanson' at the beginning of the line
     if (!line.startsWith('Paroles de la chanson')) {
       const p = document.createElement('p');
       p.textContent = line;
@@ -71,7 +72,9 @@ const printLyrics = (lyrics: string): void => {
 
 // Display error message
 const showError = (msg: string): void => {
+  lyricOutput.innerHTML = '';
   errorDiv.innerHTML = '';
+
   const errorMsg = document.createElement('p');
   errorMsg.textContent = msg;
   errorDiv.appendChild(errorMsg);
