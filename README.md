@@ -1,7 +1,7 @@
 # Lyrical
 
-![1](https://github.com/user-attachments/assets/b823164e-93a1-4a7e-8559-547bc9a42f45)
-![2](https://github.com/user-attachments/assets/791d792b-c6be-4f9c-81ea-e5a2f73a2762)
+![1](https://github.com/user-attachments/assets/8677009b-f22f-4673-9fb0-3e5d7d12d67a)
+![2](https://github.com/user-attachments/assets/b35e33a2-e4fb-4473-9fba-6864ad862352)
 
 Lyrical allows you to find the lyrics to any of your favorite songs.
 
