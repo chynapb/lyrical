@@ -52,8 +52,6 @@ const search = () => __awaiter(void 0, void 0, void 0, function* () {
         showError('An error occurred while fetching the lyrics. Please try again.');
     }
     finally {
-        artistInput.value = '';
-        titleInput.value = '';
         welcomeDiv.remove();
     }
 });
